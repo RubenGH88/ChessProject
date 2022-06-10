@@ -17,7 +17,7 @@ class Piece {
   {ctx.drawImage(this.image,this.x, this.y, this.width, this.height);}
 
   erase()
-  {ctx.clearRect(this.x, this.y, this.width, this.height);}
+  {ctx.clearRect(this.x-10, this.y-10, this.width+20, this.height+20);}
 
   move()
   {this.erase()

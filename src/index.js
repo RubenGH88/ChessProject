@@ -42,10 +42,6 @@ let onclick =(e)=>{
         destinyColumn=undefined
          
        
-       
-
-       
-
     }
     
     else if(originRow===0)
@@ -60,8 +56,6 @@ let onclick =(e)=>{
         pieceSelected=pieceSelectedArray[0]
       
     }
-    
-
     
 
 }
