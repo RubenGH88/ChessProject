@@ -22,17 +22,14 @@ class Piece {
   move()
   {this.erase()
    
-
  //this is for changing coordenates   
- this.column=this.destiny[0]
-this.row=this.destiny[1]
-setX(this.column)
-setY(this.row)
-this.x=posX
-this.y=posY
-
-this.draw()
-
+  this.column=this.destiny[0]
+  this.row=this.destiny[1]
+  setX(this.column)
+  setY(this.row)
+  this.x=posX
+  this.y=posY
+  this.draw()
 }
  
 }
