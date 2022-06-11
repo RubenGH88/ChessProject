@@ -38,8 +38,21 @@ class Piece {
   
 }
 
+generalFiltering(){
+
+  this.movementFiltered=this.naturalMovements.filter((movement)=>{
+  
+    return movement[1]>0 && movement[1]<9 && movement[0] &&!checkFriends(movement)
+  })
+
+  
+
+}
+
+
 canMove()
 {
+  
 return true
 
 }
@@ -51,11 +64,51 @@ return true
 //Creating subclasses
 class Pawn extends Piece{
   constructor(image,row,column)
-  {super(image,row,column)}
+  {super(image,row,column)
+  this.moveToKill=[[1,1],[-1,1]]
+  this.moveToWalk=[[0,1],[0,2]]
+this.killingMovement=[]
+this.walkingMovement=[]}
+
+
+canMove(){
+  
+  this.moveToKill.forEach((move)=>{
+    this.killingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
+  })
+  
+  this.killingMovement.forEach((move)=>{
+    if(checkEnemies(move)){this.naturalMovements.push(move)}
+    })
+   
+  this.moveToWalk.forEach((move)=>{
+    this.walkingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
+  })
+ 
+  if(!checkEnemies(this.walkingMovement[0])){
+    this.naturalMovements.push(this.walkingMovement[0]);
+  
+    if(this.row===2){
+      if(!checkEnemies(this.walkingMovement[1])){
+
+      this.naturalMovements.push(this.walkingMovement[1])}
+    }
+  }
+
+ 
+this.movementFiltered=JSON.parse(JSON.stringify(this.naturalMovements))
+
+let var1=JSON.stringify(this.movementFiltered)
+let var2=JSON.stringify(this.destiny)
+this.naturalMovements=[]
+this.walkingMovement=[]
+console.log(var1)
+if (var1.includes(var2)){return true}
+else return false
 
 }
 
-
+}
 
 
 
@@ -72,18 +125,22 @@ class Horse extends Piece{
 [2,1],[2,-1],[-2,1],[-2,-1]]
 
 }
+
+
+
 canMove(){
   this.moves.forEach((move)=>{
     this.naturalMovements.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
   })
-    this.movementFiltered=this.naturalMovements.filter((movement)=>{
-     
-      return this.destiny[0]==movement[0]&&this.destiny[1]==movement[1]
-      
-   })
-   if(this.movementFiltered[0]===undefined){return false}
-    return true
-    this.naturalMovements=[]
+
+  this.generalFiltering()
+  let var1=JSON.stringify(this.movementFiltered)
+  let var2=JSON.stringify(this.destiny)
+
+  if(var1.includes(var2)){return true}
+
+  else return false
+ 
       }
     
 }
@@ -103,6 +160,10 @@ class King extends Piece{
   {super(image,row,column)
   this.moves=[[1,0],[1,-1],[0,-1],
 [-1,-1],[-1,0],[-1,1],[0,1],[1,1]]}
+
+
+
+
 }
 
 //Creating the proper Pieces
