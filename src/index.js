@@ -7,6 +7,7 @@ let setup=()=>{
 pieces.forEach((piece)=>{piece.draw()})
 
 }
+
 let cellSelected
 let originRow=0
 let originColumn
@@ -14,12 +15,13 @@ let destinyRow
 let destinyColumn
 let pieceSelected
 let enemyPieces=blackPieces
+let myPieces=whitePieces
 let turn="whites"
 
 let changeTurn=()=>{
     if (turn==="whites")
-    {turn="black";enemyPieces=whitePieces}
-    else{turn="whites";enemyPieces=blackPieces}
+    {turn="black";enemyPieces=whitePieces;myPieces=blackPieces}
+    else{turn="whites";enemyPieces=blackPieces;myPieces=whitePieces}
 
 }
 
@@ -28,15 +30,15 @@ let changeTurn=()=>{
 let onclick =(e)=>{
     
     
-    
     if(originRow!==0){
         cellSelected=[locateColumn(e),locateRow(e)]
-        console.log(cellSelected)
-        //where i want to go
+       if(check(cellSelected)===undefined){
+        
+
+
         destinyColumn=cellSelected[0]
         destinyRow=cellSelected[1]
-        console.log(destinyColumn)
-        console.log(destinyRow)
+        
         
         
         let destiny=[destinyColumn,destinyRow]
@@ -44,17 +46,17 @@ let onclick =(e)=>{
         pieceSelected.destiny=destiny
         
         
-        pieceSelected.move()
+       pieceSelected.move()
         changeTurn()
         
-        turnAround()  
+       turnAround()  
         
         
         originRow=0;
         originColumn=undefined
         destinyRow=undefined
         destinyColumn=undefined
-        cellSelected=[]
+        cellSelected=[]}
         
         
     }

@@ -19,8 +19,10 @@ let whitePieces=[a1tower, h1tower, b1horse, g1horse,
  
  let whitePiecesCells=[]   
 
+ let copyWhite=JSON.parse(JSON.stringify(whitePieces))
+
 let whiteCells=()=>{
-  whitePieces.forEach((piece)=>{
+  copyWhite.forEach((piece)=>{
     whitePiecesCells.push([piece.column,piece.row])
   })
 }
@@ -34,8 +36,13 @@ let blackPieces=[a8tower, h8tower, b8horse, g8horse,
 
 let blackPiecesCells=[]
 
+let copyBlack=JSON.parse(JSON.stringify(blackPieces))
+
+
+
+
 let blackCells=()=>{
-  blackPieces.forEach((piece)=>{
+  copyBlack.forEach((piece)=>{
     blackPiecesCells.push([piece.column,piece.row])
   })
 }
@@ -129,3 +136,5 @@ setup()
 
 
 }
+
+
