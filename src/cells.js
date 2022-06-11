@@ -1,9 +1,6 @@
+//this is for making the setup and draw all the pieces
+
 let cellwidth=canvas.width/8
-
-let rows=[1,2,3,4,5,6,7,8]
-
-let columns=["A","B","C","D","E","F","G","H"]
-
 
 let initialX=cellwidth/6
 let initialY=10
@@ -117,7 +114,7 @@ let endH=start1+cellwidth
 
 
 
-let locateRow=(e)=>{
+let locateColumn=(e)=>{
 
   if(e.clientX>startA&&e.clientX<endA)
   {return "A"}
@@ -138,7 +135,7 @@ let locateRow=(e)=>{
 }
 
 
-let locateColumn=(e)=>{
+let locateRow=(e)=>{
  
   if(e.clientY>start1&&e.clientY<end1)
   {return 1}

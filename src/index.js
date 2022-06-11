@@ -7,54 +7,75 @@ let setup=()=>{
 pieces.forEach((piece)=>{piece.draw()})
 
 }
-
-
-
+let cellSelected
 let originRow=0
 let originColumn
 let destinyRow
 let destinyColumn
-
 let pieceSelected
+let enemyPieces=blackPieces
+let turn="whites"
+
+let changeTurn=()=>{
+    if (turn==="whites")
+    {turn="black";enemyPieces=whitePieces}
+    else{turn="whites";enemyPieces=blackPieces}
+
+}
+
 
 
 let onclick =(e)=>{
+    
+    
+    
     if(originRow!==0){
-      
-        
+        cellSelected=[locateColumn(e),locateRow(e)]
+        console.log(cellSelected)
         //where i want to go
-        destinyRow=locateRow(e)
-        destinyColumn=locateColumn(e)
+        destinyColumn=cellSelected[0]
+        destinyRow=cellSelected[1]
+        console.log(destinyColumn)
+        console.log(destinyRow)
         
-        let destiny=[destinyRow,destinyColumn]
-     
+        
+        let destiny=[destinyColumn,destinyRow]
+        
         pieceSelected.destiny=destiny
-       
+        
         
         pieceSelected.move()
-       
+        changeTurn()
+        
         turnAround()  
-       
+        
         
         originRow=0;
         originColumn=undefined
         destinyRow=undefined
         destinyColumn=undefined
-         
-       
+        cellSelected=[]
+        
+        
     }
     
     else if(originRow===0)
-    {
-        originRow=locateRow(e)
-        originColumn=locateColumn(e)
+    
+    {cellSelected=[locateColumn(e),locateRow(e)]
         
-        let selected=[originRow,originColumn];
         
+        originColumn=cellSelected[0]
+        originRow=cellSelected[1]
+
+        
+        let selected=[originColumn,originRow];
+      
         let pieceSelectedArray = pieces.filter((piece)=>{return piece.column===selected[0]&&piece.row===selected[1]})
        
         pieceSelected=pieceSelectedArray[0]
-      
+        if(pieceSelected===undefined){originRow=0}
+        if(enemyPieces.includes(pieceSelected)){originRow=0}
+      cellSelected=[]
     }
     
 

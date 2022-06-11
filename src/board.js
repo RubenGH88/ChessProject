@@ -16,14 +16,29 @@ let whitePieces=[a1tower, h1tower, b1horse, g1horse,
     c1bishop, f1bishop, whiteking, whitequeen,
     a2pawn, b2pawn, c2pawn, d2pawn, e2pawn,
     f2pawn, g2pawn,  h2pawn]
-   
+ 
+ let whitePiecesCells=[]   
+
+let whiteCells=()=>{
+  whitePieces.forEach((piece)=>{
+    whitePiecesCells.push([piece.column,piece.row])
+  })
+}
+
+
 
 let blackPieces=[a8tower, h8tower, b8horse, g8horse,
     c8bishop, f8bishop, blackking, blackqueen,
     a7pawn, b7pawn, c7pawn, d7pawn, e7pawn,
     f7pawn, g7pawn,  h7pawn]
 
+let blackPiecesCells=[]
 
+let blackCells=()=>{
+  blackPieces.forEach((piece)=>{
+    blackPiecesCells.push([piece.column,piece.row])
+  })
+}
 
 //function that invert columns, necessary for turn around the board
 

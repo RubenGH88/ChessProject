@@ -1,8 +1,8 @@
 //Creating Piece Class
 class Piece {
   constructor(image,row,column) {
-    this.row=row
     this.column=column
+    this.row=row
     this.width = canvas.width*2/24;
     this.height = canvas.height/8-20;
     this.image = image;
