@@ -31,26 +31,33 @@ let onclick =(e)=>{
     
     
     if(originRow!==0){
+        
         cellSelected=[locateColumn(e),locateRow(e)]
-       if(check(cellSelected)===undefined){
-        
+       if(checkFriends(cellSelected)===undefined){
+           
+           
+           destinyColumn=cellSelected[0]
+           destinyRow=cellSelected[1]
+           
+           
+           
+           let destiny=[destinyColumn,destinyRow]
+           
+           pieceSelected.destiny=destiny
 
+           
 
-        destinyColumn=cellSelected[0]
-        destinyRow=cellSelected[1]
-        
-        
-        
-        let destiny=[destinyColumn,destinyRow]
-        
-        pieceSelected.destiny=destiny
-        
-        
-       pieceSelected.move()
-        changeTurn()
-        
-       turnAround()  
-        
+           if(pieceSelected.canMove())
+           {pieceSelected.move()
+         
+           
+           changeTurn()
+          
+           
+
+           
+          turnAround()  }
+           
         
         originRow=0;
         originColumn=undefined
@@ -58,14 +65,13 @@ let onclick =(e)=>{
         destinyColumn=undefined
         cellSelected=[]}
         
-        
+        originRow=0
     }
     
     else if(originRow===0)
     
     {cellSelected=[locateColumn(e),locateRow(e)]
-        
-        
+      
         originColumn=cellSelected[0]
         originRow=cellSelected[1]
 

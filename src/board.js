@@ -138,3 +138,5 @@ setup()
 }
 
 
+//this function is for turning name of columns to numbers for helping calculate movements
+
