@@ -1,59 +1,118 @@
 //Creating Piece Class
 class Piece {
   constructor(image,row,column) {
-    this.column=column
+    this.status="alive"
+    this.column=column   
     this.row=row
     this.width = canvas.width*2/24;
     this.height = canvas.height/8-20;
     this.image = image;
+    //setX and setY, are the functions that gives the starting point to start drawing
     setX(this.column)
     setY(this.row)
+    //posX and posY are the results from the previous functions
    this.x=posX
    this.y=posY
-   this.destiny=[]
+   this.destiny=[]  //destiny is given by the position of the mouse
+   this.moves=[]  //each type of move each piece can made
+   this.numberOfMovements
+   this.posibleDestiny=[]
    this.naturalMovements=[]
-   this.moves=[]
-   this.status="live"
    this.posibleMoves=[]
    this.movementFiltered
   };
 
-  draw()
-  {ctx.drawImage(this.image,this.x, this.y, this.width, this.height);}
+  draw(){
+   if (this.status==="alive") 
+    ctx.drawImage(this.image,this.x, this.y, this.width, this.height);}
 
-  erase()
+  erase() 
   {ctx.clearRect(this.x-10, this.y-10, this.width+20, this.height+20);}
 
   move()
   {this.erase()
    
- //this is for changing coordenates   
+ //this is for changing coordenates for the new drawing
   this.column=this.destiny[0]
   this.row=this.destiny[1]
   setX(this.column)
   setY(this.row)
   this.x=posX
   this.y=posY
+
+
+
   this.draw()
   
 }
 
-generalFiltering(){
 
+// this expressions filter the movements that goes outside the board
+
+generalFiltering(){
+  
   this.movementFiltered=this.naturalMovements.filter((movement)=>{
   
-    return movement[1]>0 && movement[1]<9 && movement[0] &&!checkFriends(movement)
+    return movement[1]>0 && movement[1]<9 && movement[0] && !checkFriends(movement)
+    
   })
-
   
+  this.naturalMovements=[]
+
+}
+
+//function that generate the valid movements for each piece
+
+generatingMovements(){
+  
+  this.moves.forEach((move)=>{
+
+  this.posibleDestiny=
+  [numToLet(letToNum(this.column)+move[0]),this.row+move[1]];
+
+  for(let i =0; i<this.numberOfMovements; i++){console.log("entro en el for")
+   
+
+    if(!checkEnemies(this.posibleDestiny) && 
+    !checkFriends(this.posibleDestiny)){
+
+      this.copy=JSON.parse(JSON.stringify(this.posibleDestiny))
+      this.naturalMovements.push(this.copy);
+      
+    this.posibleDestiny[0]=numToLet(letToNum(this.posibleDestiny[0])+move[0])
+    this.posibleDestiny[1]=this.posibleDestiny[1]+move[1]
+    
+      
+      
+    }
+  }
+
+if(checkEnemies(this.posibleDestiny || !checkFriends(this.posibleDestiny))){
+  this.naturalMovements.push(this.posibleDestiny)
+}
+
+})
 
 }
 
 
-canMove()
+
+
+canMove()  
 {
+
+  this.generatingMovements()
+
+  this.generalFiltering()
   
-return true
+  let var1=JSON.stringify(this.movementFiltered)
+  let var2=JSON.stringify(this.destiny)
+ 
+
+  if(var1.includes(var2)){return true}
+
+  else return false
+ 
 
 }
 }
@@ -61,7 +120,10 @@ return true
 
 
 
-//Creating subclasses
+//Here i am creating every subclass needed
+
+
+
 class Pawn extends Piece{
   constructor(image,row,column)
   {super(image,row,column)
@@ -102,7 +164,7 @@ let var1=JSON.stringify(this.movementFiltered)
 let var2=JSON.stringify(this.destiny)
 this.naturalMovements=[]
 this.walkingMovement=[]
-console.log(var1)
+
 if (var1.includes(var2)){return true}
 else return false
 
@@ -115,49 +177,41 @@ else return false
 
 class Tower extends Piece{
   constructor(image,row,column)
-  {super(image,row,column)}
+  {super(image,row,column)
+  this.numberOfMovements=7
+this.moves=[[1,0],[0,1],[-1,0],[0,-1]]}
 }
 
 class Horse extends Piece{
   constructor(image,row,column)
   {super(image,row,column)
+    this.numberOfMovements=1
   this.moves=[[1,2],[1,-2],[-1,2],[-1,-2],
 [2,1],[2,-1],[-2,1],[-2,-1]]
 
 }
 
-
-
-canMove(){
-  this.moves.forEach((move)=>{
-    this.naturalMovements.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
-  })
-
-  this.generalFiltering()
-  let var1=JSON.stringify(this.movementFiltered)
-  let var2=JSON.stringify(this.destiny)
-
-  if(var1.includes(var2)){return true}
-
-  else return false
- 
-      }
-    
 }
 
 class Bishop extends Piece{
   constructor(image,row,column)
-  {super(image,row,column)}
+  {super(image,row,column)
+  this.numberOfMovements=7
+  this.moves=[[1,1],[1,-1],[-1,1],[-1,-1]]}
 }
 
 class Queen extends Piece{
   constructor(image,row,column)
-  {super(image,row,column)}
+  {super(image,row,column)
+  this.numberOfMovements=7
+this.moves=[[1,1],[1,-1],[-1,1],[-1,-1],
+[1,0],[0,1],[-1,0],[0,-1]]}
 }
 
 class King extends Piece{
   constructor(image,row,column)
   {super(image,row,column)
+    this.numberOfMovements=1
   this.moves=[[1,0],[1,-1],[0,-1],
 [-1,-1],[-1,0],[-1,1],[0,1],[1,1]]}
 
@@ -166,9 +220,11 @@ class King extends Piece{
 
 }
 
-//Creating the proper Pieces
-let a1tower =new Tower(whiteTower,1,"A")
+//Here i am creating each piece
+
+
 let h1tower =new Tower(whiteTower,1,"H")
+let a1tower =new Tower(whiteTower,1,"A")
 let b1horse =new Horse(whiteHorse,1,"B")
 let g1horse =new Horse(whiteHorse,1,"G")
 let c1bishop =new Bishop(whiteBishop,1,"C")

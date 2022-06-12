@@ -1,6 +1,7 @@
-//all logic necessary for movements
+//this functions help whith the movements
 
-//selecting a correct piece for moving
+/* A function that check if there is 
+an enemy piece in a destiny cell*/
 
 const checkFriends=(cell)=>{
 
@@ -12,6 +13,9 @@ const checkFriends=(cell)=>{
    return myPiece
 }
 
+/* A function that check if there is 
+an enemy piece in a destiny cell*/
+
 const checkEnemies=(cell)=>{
 
     let enemyPiece=enemyPieces.filter((piece)=>{
@@ -22,7 +26,9 @@ const checkEnemies=(cell)=>{
    return enemyPiece
 }
 
-
+/*the next functions are for helping calculate the movements 
+converting the letters of the columns to numbers
+and reverse it*/
 
 let letToNum=(column)=>{
 

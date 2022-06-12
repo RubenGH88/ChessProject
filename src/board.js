@@ -122,9 +122,9 @@ let turnAround =()=>{
 
    
 pieces.forEach((piece)=>{
+  piece.erase()
     piece.row=changeRow(piece.row);
     piece.column=changeColumn(piece.column);
-    piece.erase()
     setX(piece.column);
     setY(piece.row);
 piece.x=posX;
@@ -136,7 +136,4 @@ setup()
 
 
 }
-
-
-//this function is for turning name of columns to numbers for helping calculate movements
 

@@ -2,7 +2,7 @@ const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
 
-
+// the function setup draws all the pieces in the chess board
 let setup=()=>{
 pieces.forEach((piece)=>{piece.draw()})
 
@@ -26,30 +26,36 @@ let changeTurn=()=>{
 }
 
 
-
 let onclick =(e)=>{
     
     
     if(originRow!==0){
         
         cellSelected=[locateColumn(e),locateRow(e)]
-       if(checkFriends(cellSelected)===undefined){
+        if(checkFriends(cellSelected)===undefined){
+            
+            
+            destinyColumn=cellSelected[0]
+            destinyRow=cellSelected[1]
+            
+            
+            
+            let destiny=[destinyColumn,destinyRow]
+            
+            
+            
+            pieceSelected.destiny=destiny
            
-           
-           destinyColumn=cellSelected[0]
-           destinyRow=cellSelected[1]
-           
-           
-           
-           let destiny=[destinyColumn,destinyRow]
-           
-           pieceSelected.destiny=destiny
-
-           
-
-           if(pieceSelected.canMove())
-           {pieceSelected.move()
-         
+            
+            if(pieceSelected.canMove())
+            {pieceSelected.move()
+                let dyingPiece=enemyPieces.filter((piece)=>{
+                    return piece.column===destiny[0] && piece.row===destiny[1]
+                  });
+                 
+                  if(dyingPiece[0]){dyingPiece[0].status==="dead";
+                dyingPiece=[]}
+                 
            
            changeTurn()
           

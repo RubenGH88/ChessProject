@@ -3,7 +3,7 @@
 let cellwidth=canvas.width/8
 
 let initialX=cellwidth/6
-let initialY=10
+let initialY=10 // i still need to make it canvas related
 
 
 //setX is for setting the initial x positions
@@ -110,7 +110,8 @@ let endH=start1+cellwidth
 
 
 
-//the functions for locate a
+/*the nexts functions are for locating wich cell is clicked
+by the position of the click*/
 
 
 
