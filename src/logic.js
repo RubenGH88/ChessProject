@@ -100,3 +100,74 @@ let letToNum=(column)=>{
   
     }
   }
+
+
+
+  let checkOpponent=()=>{
+    myPieces.forEach((piece)=>{
+     piece.canMove();
+     if(piece.movementFiltered[0]){
+      piece.movementFiltered.forEach((move=>{
+        if(enemyKing.column===move[0] && 
+          enemyKing.row===move[1]){
+            danger="check"
+            console.log("check")
+          }
+      }))
+     }
+    })
+
+  }
+  
+    let beingChecked=()=>{
+      let result=false
+      enemyPieces.forEach((piece)=>{
+        piece.generatingMovements2();
+        piece.generalFiltering2();
+        
+        if(piece.movementFiltered2[0])
+        {piece.movementFiltered2.forEach((movement)=>{
+          if(myKing.column===movement[0] && 
+            myKing.row===movement[1]){
+              
+              result=true
+            }
+        })}
+      })
+      
+        
+      return result
+  
+    }
+
+
+
+
+  let checkMate=()=>{
+    let checkMate=true
+
+    myPieces.forEach((piece)=>{
+
+      piece.canMove();
+      if(piece.movementFiltered[0]){
+        let pieceColumn=piece.column;
+        let pieceRow=piece.row;
+            piece.movementFiltered.forEach((movement)=>{
+              piece.column=movement[0];
+              piece.row=movement[1];
+             
+              if (beingChecked()===false){ checkMate=false;}
+
+            })
+
+        piece.column=pieceColumn;
+        piece.row=pieceRow
+      }
+    })
+  
+
+
+    console.log(checkMate)
+    return checkMate
+  }
+

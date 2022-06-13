@@ -18,7 +18,9 @@ class Piece {
    this.numberOfMovements
    this.posibleDestiny=[]
    this.naturalMovements=[]
+   this.naturalMovements2=[]
    this.movementFiltered
+   
    
   };
 
@@ -60,15 +62,30 @@ generalFiltering(){
     return movement[1]>0 && movement[1]<9 && movement[0] && !checkFriends(movement)
     
   })
-  console.log(this)
-  console.log(this.movementFiltered)
+  
   this.naturalMovements=[]
+
+}
+
+generalFiltering2(){
+  
+  this.movementFiltered2=this.naturalMovements2.filter((movement)=>{
+    if(myPieces.includes(this))
+   { return movement[1]>0 && movement[1]<9 && movement[0] && !checkFriends(movement)}
+    else if (enemyPieces.includes(this)){
+      return movement[1]>0 && movement[1]<9 && movement[0]
+    }
+  })
+  
+  this.naturalMovements2=[]
 
 }
 
 //function that generate the valid movements for each piece
 
 generatingMovements(){
+
+  
   this.moves.forEach((move)=>{
     
     this.posibleDestiny=
@@ -96,13 +113,56 @@ generatingMovements(){
       this.naturalMovements.push(this.posibleDestiny)}
 
       else if(enemyPieces.includes(this))
-      {if(checkFriends(this.posibleDestiny || !checkEnemies(this.posibleDestiny))){
+      {if(checkFriends(this.posibleDestiny)){
         this.naturalMovements.push(this.posibleDestiny)}
 
 
       }
 
     }
+    
+  })
+  
+}
+
+
+generatingMovements2(){
+
+  
+  this.moves.forEach((move)=>{
+    
+    this.posibleDestiny=
+    [numToLet(letToNum(this.column)+move[0]),this.row+move[1]];
+    
+    for(let i =0; i<this.numberOfMovements; i++){
+      
+      
+      if(!checkEnemies(this.posibleDestiny) && 
+      !checkFriends(this.posibleDestiny)){
+        
+        this.copy=JSON.parse(JSON.stringify(this.posibleDestiny))
+        this.naturalMovements2.push(this.copy);
+        
+        this.posibleDestiny[0]=numToLet(letToNum(this.posibleDestiny[0])+move[0])
+        this.posibleDestiny[1]=this.posibleDestiny[1]+move[1]
+        
+        
+        
+      }
+    }
+    if (myPieces.includes(this)){
+
+    if(checkEnemies(this.posibleDestiny)){
+      this.naturalMovements2.push(this.posibleDestiny)}}
+
+      else if(enemyPieces.includes(this))
+      {if(checkFriends(this.posibleDestiny)){
+        this.naturalMovements2.push(this.posibleDestiny)}
+
+
+      }
+
+    
     
   })
   
@@ -120,13 +180,12 @@ canMove()
   
   let var1=JSON.stringify(this.movementFiltered)
   let var2=JSON.stringify(this.destiny)
+ 
   
   
   if(var1.includes(var2)){return true}
   
-  else return false
-  
-  
+  else return false;
 }
 }
 
@@ -142,15 +201,20 @@ class Pawn extends Piece{
   {super(image,row,column)
     this.moveToKill=[[-1,1],[1,1]]
     this.moveToWalk=[[0,1],[0,2]]
+    this.moveToKill2=[[-1,1],[1,1]]
+    this.moveToWalk2=[[0,1],[0,2]]
     this.killingMovement=[]
     this.walkingMovement=[]
+    this.killingMovement2=[]
+    this.walkingMovement2=[]
   }
   
   
   
   generatingMovements(){
+    
   if(enemyPieces.includes(this)){this.moveToWalk=[[0,-1],[0,-2]];
-this.moveToKill=[[-1,-1],[1,-1]]}
+this.moveToKill=[[-1,-1],[1,-1]];}
   
     
 
@@ -159,24 +223,120 @@ this.moveToKill=[[-1,-1],[1,-1]]}
       this.killingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
     })
     
+
     this.killingMovement.forEach((move)=>{
-    if(checkEnemies(move)){this.naturalMovements.push(move)}
+      if (myPieces.includes(this))
+    {if(checkEnemies(move)){this.naturalMovements.push(move)}};
+
+    if (enemyPieces.includes(this))
+    {if(checkFriends(move)){this.naturalMovements.push(move)}}
+
     })
    
+    this.killingMovement=[]
+
+
   this.moveToWalk.forEach((move)=>{
     this.walkingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
   })
   
-  if(!checkEnemies(this.walkingMovement[0])){
+  if(myPieces.includes(this))
+
+  {if(!checkEnemies(this.walkingMovement[0])){
     this.naturalMovements.push(this.walkingMovement[0]);
   
-    if(this.row===2 || this.row===7){
+    if(this.row===2){
       if(!checkEnemies(this.walkingMovement[1])){
   
       this.naturalMovements.push(this.walkingMovement[1])}
+      
     }
-  }
+  }}
+
+
+  if(enemyPieces.includes(this))
+
+  {if(!checkFriends(this.walkingMovement[0])){
+    this.naturalMovements.push(this.walkingMovement[0]);
+  
+    if(this.row===7){
+      if(!checkFriends(this.walkingMovement[1])){
+  
+      this.naturalMovements.push(this.walkingMovement[1])}
+      
+    }
+  }}
+
+  this.walkingMovement=[]
+
+  
 }
+
+
+generatingMovements2(){
+ 
+if(enemyPieces.includes(this)){this.moveToWalk2=[[0,-1],[0,-2]];
+this.moveToKill2=[[-1,-1],[1,-1]];}
+
+  
+
+
+  this.moveToKill2.forEach((move)=>{
+    this.killingMovement2.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
+  })
+  
+
+  this.killingMovement2.forEach((move)=>{
+    if (myPieces.includes(this))
+  {if(checkEnemies(move)){this.naturalMovements2.push(move)}};
+
+  if (enemyPieces.includes(this))
+  {if(checkFriends(move)){this.naturalMovements2.push(move)}}
+
+  })
+ 
+  this.killingMovement2=[]
+
+
+this.moveToWalk2.forEach((move)=>{
+  this.walkingMovement2.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
+})
+
+if(myPieces.includes(this))
+
+{if(!checkEnemies(this.walkingMovement2[0])){
+  this.naturalMovements2.push(this.walkingMovement2[0]);
+
+  if(this.row===2){
+    if(!checkEnemies(this.walkingMovement2[1])){
+
+    this.naturalMovements2.push(this.walkingMovement2[1])}
+    
+  }
+}}
+
+
+if(enemyPieces.includes(this))
+
+{if(!checkFriends(this.walkingMovement2[0])){
+  this.naturalMovements2.push(this.walkingMovement2[0]);
+
+  if(this.row===7){
+    if(!checkFriends(this.walkingMovement2[1])){
+
+    this.naturalMovements2.push(this.walkingMovement2[1])}
+    
+  }
+}}
+
+this.walkingMovement2=[]
+
+
+}
+
+
+
+
 
 
 }

@@ -17,47 +17,56 @@ let pieceSelected
 let enemyPieces=blackPieces
 let myPieces=whitePieces
 let turn="whites"
+let enemyKing=blackking
+let myKing=whiteking
+let danger="normal"
+
 
 let changeTurn=()=>{
     if (turn==="whites")
-    {turn="black";enemyPieces=whitePieces;myPieces=blackPieces}
-    else{turn="whites";enemyPieces=blackPieces;myPieces=whitePieces}
+    {turn="black";  enemyPieces=whitePieces;  
+    myPieces=blackPieces;  enemyKing=whiteking; myKing=blackking}
+    else{turn="whites";  enemyPieces=blackPieces;  
+    myPieces=whitePieces;  enemyKing=blackking; myKing=whiteking}
 
 }
 
 
 let onclick =(e)=>{
-    pieces.forEach((piece)=>{
-      piece.canMove();
-    })
+  
+  if(originRow!==0){
     
-    if(originRow!==0){
-        
-        cellSelected=[locateColumn(e),locateRow(e)]
-        if(checkFriends(cellSelected)===undefined){
-            
-            
-            destinyColumn=cellSelected[0]
-            destinyRow=cellSelected[1]
-            
-            
-            
-            let destiny=[destinyColumn,destinyRow]
-            
-            
-            
-            pieceSelected.destiny=destiny
+    cellSelected=[locateColumn(e),locateRow(e)]
+    if(checkFriends(cellSelected)===undefined){
+      
+      
+      destinyColumn=cellSelected[0]
+      destinyRow=cellSelected[1]
+      
+      
+      
+      let destiny=[destinyColumn,destinyRow]
+      
+      
+      
+      pieceSelected.destiny=destiny
+           
+          
 
             
-            
             if(pieceSelected.canMove())
-            {pieceSelected.move()
+            
+            
+            {pieceSelected.move();
+              danger="normal"
+              checkOpponent()
                 let dyingPiece=enemyPieces.filter((piece)=>{
                     return piece.column===destiny[0] && piece.row===destiny[1]
                   });
                  
-                  if(dyingPiece[0]){dyingPiece[0].status==="dead";
-                dyingPiece=[]}
+                  if(dyingPiece[0]){dyingPiece[0].status="dead";
+                  console.log("piece just died")
+                }
                  
            
            changeTurn()
@@ -65,8 +74,12 @@ let onclick =(e)=>{
            
 
            
-          turnAround()  }
-           
+          turnAround()  
+        
+        
+        }
+        
+       
         
         originRow=0;
         originColumn=undefined
@@ -75,9 +88,12 @@ let onclick =(e)=>{
         cellSelected=[]}
         
         originRow=0
+
+        checkMate()
     }
     
     else if(originRow===0)
+   // lookForMate()
     
     {cellSelected=[locateColumn(e),locateRow(e)]
       
