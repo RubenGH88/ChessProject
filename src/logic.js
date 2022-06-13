@@ -5,9 +5,11 @@ an enemy piece in a destiny cell*/
 
 const checkFriends=(cell)=>{
 
+
+  
     let myPiece=myPieces.filter((piece)=>{
-        return piece.column===cell[0]&&piece.row===cell[1]
-    })[0]
+        return piece.column===cell[0]&&piece.row===cell[1] && piece.status==="alive"
+    })[0] 
 
 
    return myPiece
@@ -19,8 +21,8 @@ an enemy piece in a destiny cell*/
 const checkEnemies=(cell)=>{
 
     let enemyPiece=enemyPieces.filter((piece)=>{
-        return piece.column===cell[0]&&piece.row===cell[1]
-    })[0]
+        return piece.column===cell[0]&&piece.row===cell[1] && piece.status==="alive"
+    })[0] 
 
 
    return enemyPiece

@@ -18,8 +18,8 @@ class Piece {
    this.numberOfMovements
    this.posibleDestiny=[]
    this.naturalMovements=[]
-   this.posibleMoves=[]
    this.movementFiltered
+   
   };
 
   draw(){
@@ -43,6 +43,10 @@ class Piece {
 
 
   this.draw()
+
+
+
+
   
 }
 
@@ -56,7 +60,8 @@ generalFiltering(){
     return movement[1]>0 && movement[1]<9 && movement[0] && !checkFriends(movement)
     
   })
-  
+  console.log(this)
+  console.log(this.movementFiltered)
   this.naturalMovements=[]
 
 }
@@ -64,35 +69,43 @@ generalFiltering(){
 //function that generate the valid movements for each piece
 
 generatingMovements(){
-  
   this.moves.forEach((move)=>{
-
-  this.posibleDestiny=
-  [numToLet(letToNum(this.column)+move[0]),this.row+move[1]];
-
-  for(let i =0; i<this.numberOfMovements; i++){console.log("entro en el for")
-   
-
-    if(!checkEnemies(this.posibleDestiny) && 
-    !checkFriends(this.posibleDestiny)){
-
-      this.copy=JSON.parse(JSON.stringify(this.posibleDestiny))
-      this.naturalMovements.push(this.copy);
-      
-    this.posibleDestiny[0]=numToLet(letToNum(this.posibleDestiny[0])+move[0])
-    this.posibleDestiny[1]=this.posibleDestiny[1]+move[1]
     
+    this.posibleDestiny=
+    [numToLet(letToNum(this.column)+move[0]),this.row+move[1]];
+    
+    for(let i =0; i<this.numberOfMovements; i++){
       
       
+      if(!checkEnemies(this.posibleDestiny) && 
+      !checkFriends(this.posibleDestiny)){
+        
+        this.copy=JSON.parse(JSON.stringify(this.posibleDestiny))
+        this.naturalMovements.push(this.copy);
+        
+        this.posibleDestiny[0]=numToLet(letToNum(this.posibleDestiny[0])+move[0])
+        this.posibleDestiny[1]=this.posibleDestiny[1]+move[1]
+        
+        
+        
+      }
     }
-  }
+    if (myPieces.includes(this)){
 
-if(checkEnemies(this.posibleDestiny || !checkFriends(this.posibleDestiny))){
-  this.naturalMovements.push(this.posibleDestiny)
-}
+    if(checkEnemies(this.posibleDestiny || !checkFriends(this.posibleDestiny))){
+      this.naturalMovements.push(this.posibleDestiny)}
 
-})
+      else if(enemyPieces.includes(this))
+      {if(checkFriends(this.posibleDestiny || !checkEnemies(this.posibleDestiny))){
+        this.naturalMovements.push(this.posibleDestiny)}
 
+
+      }
+
+    }
+    
+  })
+  
 }
 
 
@@ -100,20 +113,20 @@ if(checkEnemies(this.posibleDestiny || !checkFriends(this.posibleDestiny))){
 
 canMove()  
 {
-
+  
   this.generatingMovements()
-
+  
   this.generalFiltering()
   
   let var1=JSON.stringify(this.movementFiltered)
   let var2=JSON.stringify(this.destiny)
- 
-
+  
+  
   if(var1.includes(var2)){return true}
-
+  
   else return false
- 
-
+  
+  
 }
 }
 
@@ -127,48 +140,44 @@ canMove()
 class Pawn extends Piece{
   constructor(image,row,column)
   {super(image,row,column)
-  this.moveToKill=[[1,1],[-1,1]]
-  this.moveToWalk=[[0,1],[0,2]]
-this.killingMovement=[]
-this.walkingMovement=[]}
-
-
-canMove(){
+    this.moveToKill=[[-1,1],[1,1]]
+    this.moveToWalk=[[0,1],[0,2]]
+    this.killingMovement=[]
+    this.walkingMovement=[]
+  }
   
-  this.moveToKill.forEach((move)=>{
-    this.killingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
-  })
   
-  this.killingMovement.forEach((move)=>{
+  
+  generatingMovements(){
+  if(enemyPieces.includes(this)){this.moveToWalk=[[0,-1],[0,-2]];
+this.moveToKill=[[-1,-1],[1,-1]]}
+  
+    
+
+  
+    this.moveToKill.forEach((move)=>{
+      this.killingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
+    })
+    
+    this.killingMovement.forEach((move)=>{
     if(checkEnemies(move)){this.naturalMovements.push(move)}
     })
    
   this.moveToWalk.forEach((move)=>{
     this.walkingMovement.push([numToLet(letToNum(this.column)+move[0]),this.row+move[1]])
   })
- 
+  
   if(!checkEnemies(this.walkingMovement[0])){
     this.naturalMovements.push(this.walkingMovement[0]);
   
-    if(this.row===2){
+    if(this.row===2 || this.row===7){
       if(!checkEnemies(this.walkingMovement[1])){
-
+  
       this.naturalMovements.push(this.walkingMovement[1])}
     }
   }
-
- 
-this.movementFiltered=JSON.parse(JSON.stringify(this.naturalMovements))
-
-let var1=JSON.stringify(this.movementFiltered)
-let var2=JSON.stringify(this.destiny)
-this.naturalMovements=[]
-this.walkingMovement=[]
-
-if (var1.includes(var2)){return true}
-else return false
-
 }
+
 
 }
 
@@ -211,6 +220,7 @@ this.moves=[[1,1],[1,-1],[-1,1],[-1,-1],
 class King extends Piece{
   constructor(image,row,column)
   {super(image,row,column)
+    
     this.numberOfMovements=1
   this.moves=[[1,0],[1,-1],[0,-1],
 [-1,-1],[-1,0],[-1,1],[0,1],[1,1]]}

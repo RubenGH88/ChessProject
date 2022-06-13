@@ -27,7 +27,9 @@ let changeTurn=()=>{
 
 
 let onclick =(e)=>{
-    
+    pieces.forEach((piece)=>{
+      piece.canMove();
+    })
     
     if(originRow!==0){
         
@@ -45,7 +47,8 @@ let onclick =(e)=>{
             
             
             pieceSelected.destiny=destiny
-           
+
+            
             
             if(pieceSelected.canMove())
             {pieceSelected.move()
