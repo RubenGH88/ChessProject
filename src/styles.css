@@ -13,7 +13,9 @@ body {
 #game{ display: flex;
       flex-direction: row;
   align-items: center;
-  border: 1px;
+  height: 100%;
+ 
+  gap: 2px;
 
 
 }
@@ -21,9 +23,14 @@ body {
 #canvas-container{
   display: flex;
   align-content: center;
-
-  padding-top: 20%;
-  padding-bottom: 20%;
+  align-items: center;
+  flex:1 1 auto; 
+  flex-grow:1;
+  align-self:stretch;
+  text-align: center;
+  margin: 1%;
+  padding-top: 1%;
+  
 }
 
 
@@ -33,26 +40,20 @@ body {
 background-image: url(./Backgrounds/board.jpeg);
 background-repeat: no-repeat;
 background-size: contain;
-position: absolute;
-  top: 5%;
-  left: 2%;
-  right: 20%;
-  bottom: 10%;
-  width: 45%;
-  height: same-as-width
+
+
+
+
 }
 
 
 #menu{
   
- 
- 
-  position: absolute;
-  top: 0;
-  left: 50vw;
-  right: 0;
-  bottom: 0;
-  width: 50%;
+ flex:1 1 auto; 
+ flex-grow:1;
+ align-self:stretch;
+
+  margin: 1%;
   
 
 }

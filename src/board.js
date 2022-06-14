@@ -120,10 +120,10 @@ setup()
 
 let classic=()=>{
   style="Classic"
+pieces.forEach((piece)=>{
+  piece.erase()
+})
 
-  pieces.forEach((piece)=>{
-    piece.erase()
-  })
 
   document.body.style.backgroundImage = "url(./src/Backgrounds/backgroundClassic.jpeg)";
 
@@ -166,8 +166,6 @@ let classic=()=>{
   
 
  
-
-  setup()
 }
 
 
@@ -176,10 +174,10 @@ let classic=()=>{
 let dragonball=()=>{
   document.body.style.backgroundImage = "url(./src/Backgrounds/backgroundDB.jpeg)";
   style="DragonBall"
-
 pieces.forEach((piece)=>{
   piece.erase()
 })
+
 
  whitePawn.src =`src/Pieces/${style}/White/pawn.png`;
   
@@ -219,6 +217,7 @@ pieces.forEach((piece)=>{
   blackQueen.src = `src/Pieces/${style}/Black/queen.png`;
   
 
+  
 }
 
 

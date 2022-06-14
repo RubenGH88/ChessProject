@@ -1,6 +1,6 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-const background = document.getElementById("img")
+
 
 // the function setup draws all the pieces in the chess board
 let setup=()=>{
@@ -33,8 +33,9 @@ let changeTurn=()=>{
 
 
 let onclick =(e)=>{
-  console.log(whiteking.image)
-  if(originRow!==0){
+  
+  console.log(ctx)
+  if(originRow!==0){console.log("2on time")
     
     cellSelected=[locateColumn(e),locateRow(e)]
     if(checkFriends(cellSelected)===undefined){
@@ -111,13 +112,14 @@ let onclick =(e)=>{
 
         
         let selected=[originColumn,originRow];
+     
+        let pieceSelectedArray = pieces.filter((piece)=>{
+          return piece.column===selected[0]&&piece.row===selected[1]})
       
-        let pieceSelectedArray = pieces.filter((piece)=>{return piece.column===selected[0]&&piece.row===selected[1]})
-       
         pieceSelected=pieceSelectedArray[0]
         if(pieceSelected===undefined){originRow=0}
         if(enemyPieces.includes(pieceSelected)){originRow=0}
-      cellSelected=[]
+      cellSelected=[];
     }
     
 
