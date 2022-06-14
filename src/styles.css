@@ -1,4 +1,59 @@
 body {
   font-family: sans-serif;
+  background-image: url(./Backgrounds/backgroundClassic.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+
+
+#game{ display: flex;
+      flex-direction: row;
+  align-items: center;
+  border: 1px;
+
+
+}
+
+#canvas-container{
+  display: flex;
+  align-content: center;
+
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+
+
+#canvas{
+
+background-image: url(./Backgrounds/board.jpeg);
+background-repeat: no-repeat;
+background-size: contain;
+position: absolute;
+  top: 5%;
+  left: 2%;
+  right: 20%;
+  bottom: 10%;
+  width: 45%;
+  height: same-as-width
+}
+
+
+#menu{
+  
+ 
+ 
+  position: absolute;
+  top: 0;
+  left: 50vw;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  
+
 }
 

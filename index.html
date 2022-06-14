@@ -3,11 +3,40 @@
   <head>
     <title>Chess</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="./src/styles.css" />
   </head>
 
   <body>
-    <canvas id="canvas" width="690" height="690" style="background: url(./src/Pieces/board.jpeg)"> </canvas>
+    <div id="game">
+      <div id="canvas-container">
+      <canvas id="canvas" width="690" height="690" > </canvas>
+        </div>
+      <div id="menu"> 
+       <h1>Chess</h1>
+
+      
+       <button id="start">Start</button>
+       <button onclick="location.reload();">Game Restart</button>
+       <button id="classic">Classic</button>
+       <button id="dragonball">Dragon Ball</button>
+       <a href="https://github.com/RubenGH88" target="_blank" class="button">Github</a>
+       <span>by Ruben Gómez Hurtado</span>
+      
+      </div>
+
+       
+       
+    </div>
+   
+  
+
+
+
+
+
+
+
+
 
     <script src="src/images.js"></script>
 

@@ -114,7 +114,113 @@ setup()
 
 })
 
+}
 
+
+
+let classic=()=>{
+  style="Classic"
+
+  pieces.forEach((piece)=>{
+    piece.erase()
+  })
+
+  document.body.style.backgroundImage = "url(./src/Backgrounds/backgroundClassic.jpeg)";
+
+  whitePawn.src =`src/Pieces/${style}/White/pawn.png`;
+  
+ 
+  whiteTower.src = `src/Pieces/${style}/White/tower.png`;
+  
+  
+  whiteHorse.src = `src/Pieces/${style}/White/horse.png`;
+  
+
+  whiteBishop.src = `src/Pieces/${style}/White/bishop.png`;
+  
+
+  whiteKing.src = `src/Pieces/${style}/White/king.png`;
+  
+
+  whiteQueen.src = `src/Pieces/${style}/White/queen.png`;
+  
+  
+
+  blackPawn.src = `src/Pieces/${style}/Black/pawn.png`;
+
+
+  blackTower.src = `src/Pieces/${style}/Black/tower.png`;
+  
+
+  blackHorse.src = `src/Pieces/${style}/Black/horse.png`;
+  
+
+  blackBishop.src = `src/Pieces/${style}/Black/bishop.png`;
+  
+
+
+  blackKing.src = `src/Pieces/${style}/Black/king.png`;
+
+
+  blackQueen.src = `src/Pieces/${style}/Black/queen.png`;
+  
+
+ 
+
+  setup()
+}
+
+
+
+  
+let dragonball=()=>{
+  document.body.style.backgroundImage = "url(./src/Backgrounds/backgroundDB.jpeg)";
+  style="DragonBall"
+
+pieces.forEach((piece)=>{
+  piece.erase()
+})
+
+ whitePawn.src =`src/Pieces/${style}/White/pawn.png`;
+  
+ 
+  whiteTower.src = `src/Pieces/${style}/White/tower.png`;
+  
+  
+  whiteHorse.src = `src/Pieces/${style}/White/horse.png`;
+  
+
+  whiteBishop.src = `src/Pieces/${style}/White/bishop.png`;
+  
+
+  whiteKing.src = `src/Pieces/${style}/White/king.png`;
+  
+
+  whiteQueen.src = `src/Pieces/${style}/White/queen.png`;
+  
+  
+
+  blackPawn.src = `src/Pieces/${style}/Black/pawn.png`;
+
+
+  blackTower.src = `src/Pieces/${style}/Black/tower.png`;
+  
+
+  blackHorse.src = `src/Pieces/${style}/Black/horse.png`;
+  
+
+  blackBishop.src = `src/Pieces/${style}/Black/bishop.png`;
+  
+
+
+  blackKing.src = `src/Pieces/${style}/Black/king.png`;
+
+
+  blackQueen.src = `src/Pieces/${style}/Black/queen.png`;
+  
 
 }
 
+
+
+  

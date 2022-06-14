@@ -1,6 +1,6 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-
+const background = document.getElementById("img")
 
 // the function setup draws all the pieces in the chess board
 let setup=()=>{
@@ -33,7 +33,7 @@ let changeTurn=()=>{
 
 
 let onclick =(e)=>{
-  
+  console.log(whiteking.image)
   if(originRow!==0){
     
     cellSelected=[locateColumn(e),locateRow(e)]
@@ -57,7 +57,10 @@ let onclick =(e)=>{
             if(pieceSelected.canMove() && avoidCheck(pieceSelected,destiny))
             
             
-            {pieceSelected.move();
+            {
+              
+              pieceSelected.move();
+             
 
                   if(pieceSelected===whiteking ||
                     pieceSelected===blackking)
@@ -119,6 +122,11 @@ let onclick =(e)=>{
     
 
 }
+
+
+document.getElementById("classic").onclick = classic;
+document.getElementById("dragonball").onclick = dragonball;
+document.getElementById("start").onclick = setup;
 canvas.addEventListener("click",(e)=>{onclick(e)});
 
-window.addEventListener("load",setup);
+
