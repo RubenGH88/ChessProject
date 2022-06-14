@@ -58,6 +58,12 @@ let onclick =(e)=>{
             
             
             {pieceSelected.move();
+
+                  if(pieceSelected===whiteking ||
+                    pieceSelected===blackking)
+                    {castling()}
+
+             
               danger="normal"
               checkOpponent()
                 let dyingPiece=enemyPieces.filter((piece)=>{

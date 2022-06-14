@@ -184,3 +184,59 @@ let avoidCheck=(piece,destiny)=>{
   return avoidCheck
   
 }
+
+
+let castling=()=>{
+
+  if(pieceSelected===whiteking && whiteking.counter===1 &&
+    JSON.stringify(["G",1])===JSON.stringify(pieceSelected.destiny)
+    && h1tower.counter===0){
+    
+  h1tower.destiny=["F",1];
+  h1tower.move()}
+
+
+
+  if(pieceSelected===whiteking && whiteking.counter===1 &&
+    JSON.stringify(["C",1])===JSON.stringify(pieceSelected.destiny)
+    && a1tower.counter===0){
+    
+      a1tower.destiny=["D",1];
+      a1tower.move()
+    
+    }
+
+
+
+  if(pieceSelected===blackking && blackking.counter===1 &&
+    JSON.stringify(["F",1])===JSON.stringify(pieceSelected.destiny)
+    && a8tower.counter===0){
+    
+      a8tower.destiny=["E",1];
+      a8tower.move()
+
+
+}
+
+
+
+
+  if(pieceSelected===blackking && blackking.counter===1 &&
+    JSON.stringify(["B",1])===JSON.stringify(pieceSelected.destiny)
+    && h8tower.counter===0){
+    
+      h8tower.destiny=["C",1];
+      h8tower.move()
+
+}
+ 
+
+}
+  
+
+
+
+
+
+
+

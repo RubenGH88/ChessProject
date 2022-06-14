@@ -20,7 +20,7 @@ class Piece {
    this.naturalMovements=[]
    this.naturalMovements2=[]
    this.movementFiltered
-   
+   this.counter=0
    
   };
 
@@ -41,8 +41,8 @@ class Piece {
   setY(this.row)
   this.x=posX
   this.y=posY
-
-
+    this.counter++
+    
 
   this.draw()
 
@@ -63,7 +63,31 @@ generalFiltering(){
     
   })
   
-  this.naturalMovements=[]
+if(this===whiteking && whiteking.counter===0 &&
+  JSON.stringify(["G",1])===JSON.stringify(this.destiny)
+  && h1tower.counter===0){
+  
+this.movementFiltered.push(["G",1])}
+
+if(this===whiteking && whiteking.counter===0 &&
+  JSON.stringify(["C",1])===JSON.stringify(this.destiny)
+  && a1tower.counter===0 && !checkFriends(["B",1])){
+  
+this.movementFiltered.push(["C",1])}
+
+if(this===blackking && blackking.counter===0 &&
+  JSON.stringify(["F",1])===JSON.stringify(this.destiny)
+  && a8tower.counter===0 && !checkFriends(["G",1]) ){
+  
+this.movementFiltered.push(["F",1])}
+
+if(this===blackking && blackking.counter===0 &&
+  JSON.stringify(["B",1])===JSON.stringify(this.destiny)
+  && h8tower.counter===0){
+  
+this.movementFiltered.push(["B",1])}
+
+
 
 }
 
@@ -123,6 +147,8 @@ generatingMovements(){
     
   })
   
+  
+
 }
 
 
@@ -183,7 +209,6 @@ canMove()
   let var1=JSON.stringify(this.movementFiltered)
   let var2=JSON.stringify(this.destiny)
  
-  
   
   if(var1.includes(var2)){return true}
   
