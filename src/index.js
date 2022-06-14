@@ -54,7 +54,7 @@ let onclick =(e)=>{
           
 
             
-            if(pieceSelected.canMove())
+            if(pieceSelected.canMove() && avoidCheck(pieceSelected,destiny))
             
             
             {pieceSelected.move();
@@ -93,7 +93,7 @@ let onclick =(e)=>{
     }
     
     else if(originRow===0)
-   // lookForMate()
+   
     
     {cellSelected=[locateColumn(e),locateRow(e)]
       

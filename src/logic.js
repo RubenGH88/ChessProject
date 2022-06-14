@@ -171,3 +171,16 @@ let letToNum=(column)=>{
     return checkMate
   }
 
+let avoidCheck=(piece,destiny)=>{
+  let avoidCheck=true
+
+  let originalColumn=piece.column
+  let originalRow=piece.row
+  piece.column=destiny[0]
+  piece.row=destiny[1]
+  if(beingChecked()===true){avoidCheck=false;}
+  piece.column=originalColumn;
+  piece.row=originalRow
+  return avoidCheck
+  
+}

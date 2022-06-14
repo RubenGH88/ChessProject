@@ -178,6 +178,8 @@ canMove()
   
   this.generalFiltering()
   
+
+  
   let var1=JSON.stringify(this.movementFiltered)
   let var2=JSON.stringify(this.destiny)
  
