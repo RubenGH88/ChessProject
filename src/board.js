@@ -120,6 +120,10 @@ setup()
 
 let classic=()=>{
   style="Classic"
+
+  document. getElementById("game"). className = "classic"
+  document.getElementById("checkmate").src="./src/Backgrounds/classicMate.gif"
+
 pieces.forEach((piece)=>{
   piece.erase()
 })
@@ -174,6 +178,11 @@ pieces.forEach((piece)=>{
 let dragonball=()=>{
   document.body.style.backgroundImage = "url(./src/Backgrounds/backgroundDB.jpeg)";
   style="DragonBall"
+
+  document. getElementById("game"). className = "dragonBall"
+  document.getElementById("checkmate").src="./src/Backgrounds/dragonMate.gif"
+
+
 pieces.forEach((piece)=>{
   piece.erase()
 })

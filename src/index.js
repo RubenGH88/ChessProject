@@ -61,7 +61,7 @@ let onclick =(e)=>{
             {
               
               pieceSelected.move();
-             
+              document.getElementById("check").style.visibility = "hidden"
 
                   if(pieceSelected===whiteking ||
                     pieceSelected===blackking)
@@ -70,6 +70,7 @@ let onclick =(e)=>{
              
               danger="normal"
               checkOpponent()
+              
                 let dyingPiece=enemyPieces.filter((piece)=>{
                     return piece.column===destiny[0] && piece.row===destiny[1]
                   });
@@ -99,7 +100,9 @@ let onclick =(e)=>{
         
         originRow=0
 
-        checkMate()
+        if(checkMate()){
+          document.getElementById("checkmate").style.visibility = "visible"
+        }
     }
     
     else if(originRow===0)

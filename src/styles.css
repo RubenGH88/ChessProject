@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background-image: url(./Backgrounds/background3.jpeg);
+  background-image: url(./Backgrounds/backgroundClassic.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -65,6 +65,25 @@ align-items: center;
 
 }
 
+
+
+
+
+.dragonBall{
+
+  font-family: 'Saiyan Sans', sans-serif;
+}
+
+
+
+
+
+.classic{
+
+
+}
+
+
 #options{
 display: flex;
 flex-direction: row;
@@ -77,6 +96,25 @@ gap: 40px;
 
   width: 50px;
 }
+
+
+#check{
+  visibility: hidden;
+}
+
+
+
+#mate{
+  visibility: hidden;
+}
+
+
+#checkmate{
+  visibility: hidden;
+  src: url(./Backgrounds/classicCheck/mate.gif);
+}
+
+
 
 
 .footer{

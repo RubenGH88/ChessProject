@@ -111,7 +111,7 @@ let letToNum=(column)=>{
         if(enemyKing.column===move[0] && 
           enemyKing.row===move[1]){
             danger="check"
-            console.log("check")
+            document.getElementById("check").style.visibility = "visible"
           }
       }))
      }
@@ -164,10 +164,11 @@ let letToNum=(column)=>{
         piece.row=pieceRow
       }
     })
-  
+     if (checkMate===true){
+      document.getElementById("mate").style.visibility = "visible"; 
+      document.getElementById("checkmate").style.visibility = "visible"}
 
 
-    console.log(checkMate)
     return checkMate
   }
 
