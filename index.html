@@ -9,45 +9,51 @@
   <body>
     <div id="game">
       <div id="canvas-container">
-      <canvas id="canvas" width="650" height="650" > </canvas>
-        </div>
+        <canvas id="canvas" width="600" height="600" > </canvas>
+      </div>
 
 
 
       <div id="menu"> 
-       <h1>Chess</h1>
+        <h1>Chess</h1>
 
-      <div id="options">
-       <button id="start">Set Pieces</button>
-       <img src="./src/Backgrounds/restart-removebg-preview.png" onclick="location.reload();">
-       <img id="classic" src="./src/Pieces/Classic/White/pawn.png" alt="Classic">
-       <img id="dragonball" src="./src/Backgrounds/dragonball.png" alt="Dragon Ball">
-      </div>
+        <div id="options">
+            <img id="start" src="./src/Backgrounds/start.png" alt="Start" onclick="setup();">
+            <img id="restart" src="./src/Backgrounds/restart.png" alt="Restart" onclick="location.reload();">
+            <img id="classic" src="./src/Pieces/Classic/White/pawn.png" alt="Classic" onclick="classic();">
+            <img id="dragonball" src="./src/Backgrounds/dragonball.png" alt="Dragon Ball" onclick="dragonball()">
+        </div>
+
+
         <div>
-      <h2>Check</h2>
+            <h2>Check</h2>
         </div>
 
         <div>
           <h2>Mate</h2>
-          <img src="./src/Backgrounds/checkmate.jpeg" alt="checkMate" width="50%" height="50%">
-            </div>
+        </div>
+        <img id="checkmate" src="./src/Backgrounds/mate.gif" alt="checkMate" width="50%" height="50%">
 
 
 
-       <footer>
-
-
-         <a href="https://github.com/RubenGH88" target="_blank" class="button">Github</a>
-         <span>by Ruben Gómez Hurtado</span>
-       </footer>
-      
+            
       </div>
-
-       
-       
+          
     </div>
-   
-  
+        
+        
+    <footer>
+ 
+ 
+      <a href="https://github.com/RubenGH88" target="_blank">
+          <img id="github" src="./src/Backgrounds/github.png" alt="GitHub">
+      </a>
+
+         <span>by Ruben Gómez Hurtado</span>
+
+    </footer>
+
+     
 
 
 

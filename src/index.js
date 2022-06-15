@@ -35,7 +35,7 @@ let changeTurn=()=>{
 let onclick =(e)=>{
   
   console.log(ctx)
-  if(originRow!==0){console.log("2on time")
+  if(originRow!==0){
     
     cellSelected=[locateColumn(e),locateRow(e)]
     if(checkFriends(cellSelected)===undefined){
@@ -75,7 +75,7 @@ let onclick =(e)=>{
                   });
                  
                   if(dyingPiece[0]){dyingPiece[0].status="dead";
-                  console.log("piece just died")
+                  
                 }
                  
            
@@ -126,8 +126,10 @@ let onclick =(e)=>{
 }
 
 
-document.getElementById("classic").onclick = classic;
-document.getElementById("dragonball").onclick = dragonball;
+
+
+
+
 document.getElementById("start").onclick = setup;
 canvas.addEventListener("click",(e)=>{onclick(e)});
 
