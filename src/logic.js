@@ -102,7 +102,7 @@ let letToNum=(column)=>{
   }
 
 
-
+//function that says if your movement generate a check
   let checkOpponent=()=>{
     myPieces.forEach((piece)=>{
      piece.canMove();
@@ -119,6 +119,9 @@ let letToNum=(column)=>{
 
   }
   
+
+
+
     let beingChecked=()=>{
       let result=false
       enemyPieces.forEach((piece)=>{
@@ -171,6 +174,8 @@ let letToNum=(column)=>{
 
     return checkMate
   }
+
+
 
 let avoidCheck=(piece,destiny)=>{
   let avoidCheck=true

@@ -217,8 +217,6 @@ canMove()
 }
 
 
-
-
 //Here i am creating every subclass needed
 
 
@@ -367,8 +365,6 @@ this.walkingMovement2=[]
 
 
 }
-
-
 
 
 class Tower extends Piece{

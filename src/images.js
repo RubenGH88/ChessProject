@@ -51,4 +51,3 @@ let blackQueen = new Image();
 blackQueen.src = `src/Pieces/Classic/Black/queen.png`;
 
 
-
