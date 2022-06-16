@@ -34,7 +34,7 @@ let changeTurn=()=>{
 
 let onclick =(e)=>{
   
-  console.log(ctx)
+  
   if(originRow!==0){
     
     cellSelected=[locateColumn(e),locateRow(e)]

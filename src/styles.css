@@ -6,6 +6,8 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+
+  
   
 }
 
@@ -54,7 +56,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
-
+font-size: 30px;
 
 
  flex:1 1 auto; 
@@ -73,9 +75,15 @@ align-items: center;
 .dragonBall{
 
   font-family: 'Saiyan Sans', sans-serif;
+
+  color: white;
+  text-shadow: 2px 2px black;
 }
 
+.dragonball .menu h1{
 
+ 
+}
 
 
 
